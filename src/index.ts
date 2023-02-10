@@ -111,16 +111,16 @@ export function tsImportTypes({ dryRun, organiseImports, sourcePatterns, tsConfi
       Object.entries(imports).forEach(
         ([identifier, { codeImports, defaultImport, typeImports }]: [string, ModuleImports]) => {
           if (defaultImport && codeImports.length) {
-            rewrittenImports.push(`import ${defaultImport}, { ${codeImports.join(', ')} } from '${identifier}'`);
+            rewrittenImports.push(`import ${defaultImport}, { ${codeImports.join(', ')} } from '${identifier}';`);
           }
           if (defaultImport && !codeImports.length) {
-            rewrittenImports.push(`import ${defaultImport} from '${identifier}'`);
+            rewrittenImports.push(`import ${defaultImport} from '${identifier}';`);
           }
           if (!defaultImport && codeImports.length) {
-            rewrittenImports.push(`import { ${codeImports.join(', ')} } from '${identifier}'`);
+            rewrittenImports.push(`import { ${codeImports.join(', ')} } from '${identifier}';`);
           }
           if (typeImports.length) {
-            rewrittenImports.push(`import type { ${typeImports.join(', ')} } from '${identifier}'`);
+            rewrittenImports.push(`import type { ${typeImports.join(', ')} } from '${identifier}';`);
           }
         },
       );
